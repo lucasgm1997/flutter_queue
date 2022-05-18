@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "181866337559",
+    "project_id": "queue-b1e3f",
+    "storage_bucket": "queue-b1e3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181866337559:android:d8587b238174c7a4c79352",
+        "android_client_info": {
+          "package_name": "com.example.flutter_queue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181866337559-evdflc1e7api8c99g71gc8snsk5o65tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdk01aNo4UOC2oEOwze8itDNbnAY5sROc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181866337559-evdflc1e7api8c99g71gc8snsk5o65tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
