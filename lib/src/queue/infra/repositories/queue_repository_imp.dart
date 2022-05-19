@@ -1,9 +1,9 @@
 import 'package:flutter_queue/src/queue/domain/entities/queue_entity.dart';
-import 'package:flutter_queue/src/queue/domain/repositories/get_all_queues_repository.dart';
+import 'package:flutter_queue/src/queue/domain/repositories/queues_repository.dart';
 import 'package:flutter_queue/src/queue/infra/adapters/json_to_queue.dart';
 import 'package:flutter_queue/src/queue/infra/datasource/queue_datasource.dart';
 
-class QueueRepositoryImp implements IGetAllQueuesRepository {
+class QueueRepositoryImp implements IQueueRepository {
 
   final IQueueDataSource _dataSource;
 
