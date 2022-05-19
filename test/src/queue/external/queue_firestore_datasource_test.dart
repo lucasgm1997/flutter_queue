@@ -3,7 +3,7 @@ import 'package:flutter_queue/src/queue/external/queue_firestore_datasource.dart
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('queue firestore datasource ...', () async {
+  test('Deve retornar uma stream de map do firebase ', () async {
     final firestore = FakeFirebaseFirestore();
 
     await firestore.collection('queue').add(
