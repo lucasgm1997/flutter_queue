@@ -3,7 +3,8 @@ import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase_i
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../mocks/mocks.dart';
+import '../../../../mocks/mocks.dart';
+
 
 void main() {
   test('Deve retornar uma lista de QueueEntity', ()  {

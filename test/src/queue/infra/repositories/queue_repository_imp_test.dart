@@ -3,7 +3,8 @@ import 'package:flutter_queue/src/queue/infra/repositories/queue_repository_imp.
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../mocks/mocks.dart';
+import '../../../../mocks/mocks.dart';
+
 
 void main() {
   test('Deve receber uma Stream de Map e converter para uma Stream de QueueEntity ', () {
