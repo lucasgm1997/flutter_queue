@@ -9,7 +9,7 @@ class QueueFirestoreDataSource implements IQueueDataSource {
   @override
   Stream<List<Map>> getAllQueues() {
     final collectionReference = firestore.collection('queue');
-    final snapshotQueue = collectionReference.snapshots();
+    final snapshotQueue = collectionReference.orderBy('priority', descending: true).snapshots();
 
     return snapshotQueue.map((event) => event.docs).map(_convert);
   }

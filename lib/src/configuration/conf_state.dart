@@ -12,7 +12,6 @@ class LoadedConfState implements ConfState {
   final List<QueueEntity> queues;
 
   LoadedConfState(this.queues);
-
 }
 
 class ExcpetionConfState implements ConfState{

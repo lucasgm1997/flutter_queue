@@ -8,7 +8,7 @@ import 'package:flutter_queue/src/queue/infra/repositories/queue_repository_imp.
 import 'package:provider/provider.dart';
 
 final queueModule = [
-  Provider.value(value: FirebaseFirestore.instance),
+  Provider<FirebaseFirestore>.value(value: FirebaseFirestore.instance),
   Provider<IQueueDataSource>(create: ((context) => QueueFirestoreDataSource(context.read())),),
   Provider<IQueueRepository>(create: ((context) => QueueRepositoryImp(context.read())),),
   Provider<IGetAllQueuesUsecase>(create: ((context) => GetAllQueuesUsecaseImp(context.read())),)
