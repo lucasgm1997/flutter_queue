@@ -6,8 +6,8 @@ class GetAllQueues implements ConfEvent {
 
 }
 
-class AddQueuesConfEvent implements ConfEvent {
+class FetchQueuesConfigurationEvent implements ConfEvent {
   final List<QueueEntity> queues;
 
-  AddQueuesConfEvent(this.queues);
+  FetchQueuesConfigurationEvent(this.queues);
 }
