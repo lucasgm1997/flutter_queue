@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_queue/src/configuration/blocs/conf_bloc.dart';
-import 'package:flutter_queue/src/configuration/conf_state.dart';
+import 'package:flutter_queue/src/configuration/configuration_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -17,7 +17,7 @@ void main() {
       return ConfBloc(usecase);
     },
     expect: (){
-      return [isA<LoadedConfState>()];
+      return [isA<LoadedConfigurationState>()];
     }    
   );
 }

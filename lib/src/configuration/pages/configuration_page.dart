@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_queue/src/configuration/blocs/conf_bloc.dart';
-import 'package:flutter_queue/src/configuration/conf_state.dart';
+import 'package:flutter_queue/src/configuration/configuration_state.dart';
 import 'package:provider/provider.dart';
 
 class ConfigurationPage extends StatelessWidget {
@@ -34,7 +34,7 @@ class ConfigurationPage extends StatelessWidget {
                   ),
                 ],
               ),
-              if (state is LoadedConfState)
+              if (state is LoadedConfigurationState)
                 ListView.builder(
                     shrinkWrap: true,
                     itemCount: state.queues.length,
