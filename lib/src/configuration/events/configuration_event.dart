@@ -1,13 +1,10 @@
 import 'package:flutter_queue/src/queue/domain/entities/queue_entity.dart';
 
-abstract class ConfEvent { }
+abstract class ConfigurationEvent { }
 
-class GetAllQueues implements ConfEvent {
+class GetAllQueues implements ConfigurationEvent {
 
 }
 
-class FetchQueuesConfigurationEvent implements ConfEvent {
-  final List<QueueEntity> queues;
-
-  FetchQueuesConfigurationEvent(this.queues);
+class FetchQueuesConfigurationEvent implements ConfigurationEvent {
 }

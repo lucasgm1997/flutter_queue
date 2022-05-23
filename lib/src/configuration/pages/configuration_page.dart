@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_queue/src/configuration/blocs/conf_bloc.dart';
 import 'package:flutter_queue/src/configuration/configuration_state.dart';
+import 'package:flutter_queue/src/configuration/events/configuration_event.dart';
 import 'package:provider/provider.dart';
 
-class ConfigurationPage extends StatelessWidget {
+class ConfigurationPage extends StatefulWidget {
   const ConfigurationPage({Key? key}) : super(key: key);
 
   @override
+  State<ConfigurationPage> createState() => _ConfigurationPageState();
+}
+
+class _ConfigurationPageState extends State<ConfigurationPage> with CompleteStateMixin {
+
+  @override
+  void completeState() {
+    context.read<ConfigurationBloc>().add(FetchQueuesConfigurationEvent());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final bloc = context.watch<ConfBloc>();
-    // Widget list = Container();
+    final bloc = context.watch<ConfigurationBloc>();
     final state = bloc.state;
 
     return Scaffold(
@@ -27,7 +38,7 @@ class ConfigurationPage extends StatelessWidget {
               Row(
                 children: [
                   const Text('Filas'),
-                  Spacer(),
+                  const Spacer(),
                   const Icon(
                     Icons.add,
                     color: Colors.green,
@@ -62,5 +73,21 @@ class ConfigurationPage extends StatelessWidget {
         ),
       ),
     );
+  }
+  
+  
+}
+
+
+mixin CompleteStateMixin <T extends StatefulWidget> on State<T> {
+
+  void completeState();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      completeState();
+    });
   }
 }

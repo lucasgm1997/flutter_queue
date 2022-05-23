@@ -1,5 +1,5 @@
 import 'package:flutter_queue/src/queue/domain/entities/queue_entity.dart';
-import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase_imp.dart';
+import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase/get_all_queues_usecase_imp.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
