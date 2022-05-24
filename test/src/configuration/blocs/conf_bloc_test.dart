@@ -13,10 +13,11 @@ void main() {
     build: () {
       final usecase = IGetAllQueuesUsecaseMock();
       final addNewQueueUsecase = AddNewQueueUsecaseMock();
+      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
 
       when( () => usecase.call() ).thenAnswer( (_) => Stream.value([]));
 
-      return ConfigurationBloc(usecase, addNewQueueUsecase);
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
     },
     act: (bloc) => bloc.add(FetchQueuesConfigurationEvent()),
     wait: const Duration(milliseconds: 500),

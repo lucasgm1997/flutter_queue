@@ -4,4 +4,6 @@ abstract class IQueueRepository {
   Stream<List<QueueEntity>> getAllQueues();
 
   Future<void> addQueue(QueueEntity entity);
+
+  Future<void> removeQueue(QueueEntity entity);
 }

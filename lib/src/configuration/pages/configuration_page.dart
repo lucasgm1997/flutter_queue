@@ -111,9 +111,14 @@ class _ConfigurationPageState extends State<ConfigurationPage> with CompleteStat
                         return ListTile(
                           title: Text('${queue.title} - ${queue.abbreviation}'),
                           subtitle: Text('${queue.priority} de prioridade'),
-                          trailing: const Icon(
-                            Icons.remove,
+                          trailing:  IconButton(
+                            onPressed: (){
+                               context.read<ConfigurationBloc>().add(RemoveQueueConfigurationEvent(queue));
+                              print(queue.id);
+                            },
                             color: Colors.red,
+                            
+                            icon: const Icon(Icons.remove,),
                           ),
                         );
                       }),

@@ -4,6 +4,8 @@ import 'package:flutter_queue/src/queue/domain/usecases/add_new_queue/add_new_qu
 import 'package:flutter_queue/src/queue/domain/usecases/add_new_queue/add_new_queue_usecase_imp.dart';
 import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase/get_all_queues_usecase.dart';
 import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase/get_all_queues_usecase_imp.dart';
+import 'package:flutter_queue/src/queue/domain/usecases/remove_queue_use_case/remove_queue_use_case.dart';
+import 'package:flutter_queue/src/queue/domain/usecases/remove_queue_use_case/remove_queue_use_case_imp.dart';
 import 'package:flutter_queue/src/queue/external/queue_firestore_datasource.dart';
 import 'package:flutter_queue/src/queue/infra/datasource/queue_datasource.dart';
 import 'package:flutter_queue/src/queue/infra/repositories/queue_repository_imp.dart';
@@ -16,4 +18,5 @@ final queueModule = [
   //usecases
   Provider<IGetAllQueuesUsecase>(create: ((context) => GetAllQueuesUsecaseImp(context.read<IQueueRepository>())),),
   Provider<IAddNewQueueUsecase>(create: ((context) => AddNewQueueUsecaseImp(context.read<IQueueRepository>())),),
+  Provider<IRemoveQueueUsecase>(create: ((context) => RemoveQueueUsecaseImp(context.read<IQueueRepository>())),),
  ];
