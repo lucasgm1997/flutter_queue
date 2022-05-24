@@ -6,7 +6,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) {
     
-    runApp(AppWidget());
+    runApp(const AppWidget());
   });
 }
 

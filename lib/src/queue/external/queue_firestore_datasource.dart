@@ -19,4 +19,12 @@ class QueueFirestoreDataSource implements IQueueDataSource {
       return {'id': document.id, ...document.data()};
     }).toList();
   }
+
+  @override
+  Future<void> addQueue(Map<String, dynamic> queue) async {
+    final collectionReference = firestore.collection('queue');
+    queue.remove('id');
+
+    collectionReference.add(queue);
+  }
 }

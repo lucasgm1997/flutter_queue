@@ -4,7 +4,7 @@ import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase/g
 
 class GetAllQueuesUsecaseImp implements IGetAllQueuesUsecase {
 
-  IQueueRepository _repository;
+  final IQueueRepository _repository;
 
   GetAllQueuesUsecaseImp(this._repository);
 

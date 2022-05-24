@@ -28,6 +28,19 @@ void main() {
 
   });
 
+  test('Deve converter QueueEntity para um Map', ()  {
+
+    final orderEntity = Order(position: 1, id: 'any_id', timestamp: DateTime.now(), status: EOrderStatus.wainting);
+
+    final queueEntity = QueueEntity(id: 'any_id', title: 'queue_entity_title', abbreviation: 'abbr', priority: 4, orders: [orderEntity]);
+    final queueMap = JsonToQueue.toMap(queueEntity);
+
+    expect(queueMap['id'], 'any_id');
+    expect(queueMap['title'], 'queue_entity_title');
+    expect(queueMap['orders'][0]['status'], 'wainting');
+
+  });
+
   
 
 }

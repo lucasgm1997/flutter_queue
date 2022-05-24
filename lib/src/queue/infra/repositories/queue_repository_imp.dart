@@ -18,5 +18,13 @@ class QueueRepositoryImp implements IQueueRepository {
   List<QueueEntity> _convert(List<Map> list) {
     return list.map(JsonToQueue.fromMap).toList();
   }
+  
+  @override
+  Future<void> addQueue(QueueEntity queue) async {
+    final map = JsonToQueue.toMap(queue);
+    
+    await _dataSource.addQueue(map);
+    
+  }
 
 }

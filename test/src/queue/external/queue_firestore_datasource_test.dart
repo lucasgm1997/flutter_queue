@@ -28,4 +28,23 @@ void main() {
 
     expect(result, emits(isA<List<Map>>()));
   });
+
+  test('Deve adicionar um novo item a collection queue', ( ) async {
+    final firestore = FakeFirebaseFirestore();
+    final datasource = QueueFirestoreDataSource(firestore);
+
+    datasource.addQueue({
+      'id': 'any_id',
+      'title': 'any_title',
+      'priority': 2,
+      'abbreviation': 'abbr',
+    });
+
+    final queueReference = firestore.collection('queue');
+    final queries = await queueReference.get();
+    expect(queries.docs.length, 1);
+    expect(queries.docs[0]['title'], 'any_title');
+    expect(queries.docs.first.data().containsKey('id'), false);
+
+  });
 }

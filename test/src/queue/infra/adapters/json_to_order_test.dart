@@ -26,4 +26,20 @@ void main() {
 
     expect(order.status, EOrderStatus.attending);
   });
+
+  test('Deve converter OrderEntity para um Map', ()  {
+
+    final orderEntity = JsonToOrder.fromMap({
+      'id': 'any_id',
+      'position': 1,
+      'timestamp': '2022-05-18 17:19:40',
+      'status': 'attending',
+    });
+
+    final orderMap = JsonToOrder.toMap(orderEntity);
+
+    expect(orderMap['id'], 'any_id');
+    expect(orderMap['position'], 1);
+    expect(orderMap['status'], 'attending');
+  });
 }
