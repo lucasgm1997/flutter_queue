@@ -18,7 +18,7 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
 
     on<FetchQueuesConfigurationEvent>(
       _fetchQueues,
-      transformer: restartable()
+      transformer: restartable(),
     );
 
     on<AddNewQueueConfigurationEvent>(
@@ -31,6 +31,7 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
       transformer: sequential()
     );
 
+   
   }
 
   Future<void> _fetchQueues( FetchQueuesConfigurationEvent event, Emitter<ConfigurationState> emit) async {
@@ -40,6 +41,9 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
       onData: (queues){
           emit(LoadedConfigurationState(queues));
       },
+      onError: (error, StackTrace stack) {
+        emit(ExcpetionConfigurationState(error.toString()));
+      }
     );
   }
 

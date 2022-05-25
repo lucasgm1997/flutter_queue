@@ -9,7 +9,7 @@ import '../../../mocks/mocks.dart';
 
 void main() {
 
-  blocTest<ConfigurationBloc, ConfigurationState>('conf bloc ...',
+  blocTest<ConfigurationBloc, ConfigurationState>('Fetch queues',
     build: () {
       final usecase = IGetAllQueuesUsecaseMock();
       final addNewQueueUsecase = AddNewQueueUsecaseMock();
@@ -25,6 +25,62 @@ void main() {
       return [
         isA<LoadingConfigurationState>(),
         isA<LoadedConfigurationState>()];
+    }    
+  );
+
+   
+   final entity = QueueEntityMock();
+   blocTest<ConfigurationBloc, ConfigurationState>('Add new entity',
+    build: () {
+      final usecase = IGetAllQueuesUsecaseMock();
+      final addNewQueueUsecase = AddNewQueueUsecaseMock();
+      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
+
+      when( () => addNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value([]));
+
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
+    },
+    act: (bloc) => bloc.add(AddNewQueueConfigurationEvent(entity)),
+    wait: const Duration(milliseconds: 500),
+    expect: (){
+      return [
+       ];
+    }    
+  );
+
+  blocTest<ConfigurationBloc, ConfigurationState>('Remove entity',
+    build: () {
+      final usecase = IGetAllQueuesUsecaseMock();
+      final addNewQueueUsecase = AddNewQueueUsecaseMock();
+      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
+
+      when( () => removeNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value([]));
+
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
+    },
+    act: (bloc) => bloc.add(RemoveQueueConfigurationEvent(entity)),
+    wait: const Duration(milliseconds: 500),
+    expect: (){
+      return [];
+    }    
+  );
+
+  blocTest<ConfigurationBloc, ConfigurationState>('Fetch with errors',
+    build: () {
+      final usecase = IGetAllQueuesUsecaseMock();
+      final addNewQueueUsecase = AddNewQueueUsecaseMock();
+      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
+
+      when( () => usecase.call() ).thenAnswer( (_) => Stream.error(Exception('Fetch with errors')));
+
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
+    },
+    act: (bloc) => bloc.add(FetchQueuesConfigurationEvent()),
+    expect: (){
+      return [
+        isA<LoadingConfigurationState>(),
+        isA<ExcpetionConfigurationState>(),
+      ];
     }    
   );
 }
