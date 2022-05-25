@@ -85,56 +85,54 @@ class _ConfigurationPageState extends State<ConfigurationPage> with CompleteStat
       appBar: AppBar(
         title: const Text('Configuração'),
       ),
-      body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.all(18),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                      const Text('Filas'),
-                      const Spacer(),
-                      IconButton(
-                      onPressed: _addNewQueueDialog,
-                      icon: const Icon(Icons.add),
-                    ),
-                  ],
-                ),
-                if (state is LoadedConfigurationState)
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: state.queues.length,
-                      itemBuilder: (context, index) {
-                        final queue = state.queues[index];
-                        return ListTile(
-                          title: Text('${queue.title} - ${queue.abbreviation}'),
-                          subtitle: Text('${queue.priority} de prioridade'),
-                          trailing:  IconButton(
-                            onPressed: (){
-                               context.read<ConfigurationBloc>().add(RemoveQueueConfigurationEvent(queue));
-                              print(queue.id);
-                            },
-                            color: Colors.red,
-                            
-                            icon: const Icon(Icons.remove,),
-                          ),
-                        );
-                      }),
-                const Divider(),
-                const Text('Controle', style: TextStyle(fontSize: 18),),
-                const SizedBox(height: 10,),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.black,),
-                    child: const Text('Reiniciar filas'),
-                    onPressed: () {
-                      bloc.add(RemoveAllOrdersConfigurationEvent());
-                    },
-                ),
-              ],
-            ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(18),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                    const Text('Filas'),
+                    const Spacer(),
+                    IconButton(
+                    onPressed: _addNewQueueDialog,
+                    icon: const Icon(Icons.add),
+                  ),
+                ],
+              ),
+              if (state is LoadedConfigurationState)
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.queues.length,
+                    itemBuilder: (context, index) {
+                      final queue = state.queues[index];
+                      return ListTile(
+                        title: Text('${queue.title} - ${queue.abbreviation}'),
+                        subtitle: Text('${queue.priority} de prioridade'),
+                        trailing:  IconButton(
+                          onPressed: (){
+                             context.read<ConfigurationBloc>().add(RemoveQueueConfigurationEvent(queue));
+                            print(queue.id);
+                          },
+                          color: Colors.red,
+                          
+                          icon: const Icon(Icons.remove,),
+                        ),
+                      );
+                    }),
+              const Divider(),
+              const Text('Controle', style: TextStyle(fontSize: 18),),
+              const SizedBox(height: 10,),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.black,),
+                  child: const Text('Reiniciar filas'),
+                  onPressed: () {
+                    bloc.add(RemoveAllOrdersConfigurationEvent());
+                  },
+              ),
+            ],
           ),
         ),
       ),

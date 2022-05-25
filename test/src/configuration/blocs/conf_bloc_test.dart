@@ -9,16 +9,26 @@ import '../../../mocks/mocks.dart';
 
 void main() {
 
+  late IGetAllQueuesUsecaseMock getAllUsecase;
+  late AddNewQueueUsecaseMock addNewQueueUsecase;
+  late RemoveQueueUsecaseMock removeNewQueueUsecase;
+  late RemoveAllOrdersUsecaseMock removeAllOrdersUsecase;
+  late ConfigurationBloc blocConfiguration;
+
+  setUp( (() {
+    getAllUsecase = IGetAllQueuesUsecaseMock();
+    addNewQueueUsecase = AddNewQueueUsecaseMock();
+    removeNewQueueUsecase = RemoveQueueUsecaseMock();
+    removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
+
+    blocConfiguration = ConfigurationBloc(getAllUsecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
+  }));
+
   blocTest<ConfigurationBloc, ConfigurationState>('Fetch queues',
     build: () {
-      final usecase = IGetAllQueuesUsecaseMock();
-      final addNewQueueUsecase = AddNewQueueUsecaseMock();
-      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
-      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
+      when( () => getAllUsecase.call() ).thenAnswer( (_) => Stream.value([]));
 
-      when( () => usecase.call() ).thenAnswer( (_) => Stream.value([]));
-
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
+      return blocConfiguration;
     },
     act: (bloc) => bloc.add(FetchQueuesConfigurationEvent()),
     wait: const Duration(milliseconds: 500),
@@ -26,59 +36,36 @@ void main() {
       return [
         isA<LoadingConfigurationState>(),
         isA<LoadedConfigurationState>()];
-    }    
-  );
+    });
 
    
    final entity = QueueEntityMock();
    blocTest<ConfigurationBloc, ConfigurationState>('Add new entity',
     build: () {
-      final usecase = IGetAllQueuesUsecaseMock();
-      final addNewQueueUsecase = AddNewQueueUsecaseMock();
-      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
-      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
-
-
       when( () => addNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value([]));
-
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
+      return blocConfiguration;
     },
     act: (bloc) => bloc.add(AddNewQueueConfigurationEvent(entity)),
     wait: const Duration(milliseconds: 500),
     expect: (){
-      return [
-       ];
-    }    
-  );
+      return [];
+    });
 
   blocTest<ConfigurationBloc, ConfigurationState>('Remove entity',
     build: () {
-      final usecase = IGetAllQueuesUsecaseMock();
-      final addNewQueueUsecase = AddNewQueueUsecaseMock();
-      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
-      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
-
-      when( () => removeNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value([]));
-
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
+      when( () => removeNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value());
+      return blocConfiguration;
     },
     act: (bloc) => bloc.add(RemoveQueueConfigurationEvent(entity)),
     wait: const Duration(milliseconds: 500),
     expect: (){
       return [];
-    }    
-  );
+  });
 
   blocTest<ConfigurationBloc, ConfigurationState>('Fetch with errors',
     build: () {
-      final usecase = IGetAllQueuesUsecaseMock();
-      final addNewQueueUsecase = AddNewQueueUsecaseMock();
-      final removeNewQueueUsecase = RemoveQueueUsecaseMock();
-      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
-
-      when( () => usecase.call() ).thenAnswer( (_) => Stream.error(Exception('Fetch with errors')));
-
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
+      when( () => getAllUsecase.call() ).thenAnswer( (_) => Stream.error(Exception('Fetch with errors')));
+      return blocConfiguration;
     },
     act: (bloc) => bloc.add(FetchQueuesConfigurationEvent()),
     expect: (){
@@ -86,6 +73,5 @@ void main() {
         isA<LoadingConfigurationState>(),
         isA<ExcpetionConfigurationState>(),
       ];
-    }    
-  );
+  });
 }
