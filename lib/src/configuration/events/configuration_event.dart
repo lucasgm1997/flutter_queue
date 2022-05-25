@@ -19,3 +19,5 @@ class RemoveQueueConfigurationEvent implements ConfigurationEvent {
   final QueueEntity queue;
   RemoveQueueConfigurationEvent(this.queue);
 }
+
+class RemoveAllOrdersConfigurationEvent implements ConfigurationEvent {}

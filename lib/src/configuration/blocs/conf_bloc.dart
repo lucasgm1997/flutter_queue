@@ -6,6 +6,7 @@ import 'package:flutter_queue/src/configuration/events/configuration_event.dart'
 import 'package:flutter_queue/src/queue/domain/entities/queue_entity.dart';
 import 'package:flutter_queue/src/queue/domain/usecases/add_new_queue/add_new_queue_usecase.dart';
 import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase/get_all_queues_usecase.dart';
+import 'package:flutter_queue/src/queue/domain/usecases/remove_all_orders/remove_all_orders.dart';
 import 'package:flutter_queue/src/queue/domain/usecases/remove_queue_use_case/remove_queue_use_case_imp.dart';
 
 class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
@@ -13,8 +14,9 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
   final IGetAllQueuesUsecase getAllQueuesUsecase;
   final IAddNewQueueUsecase addNewQueueUsecase;
   final IRemoveQueueUsecase removeQueueUsecase;
+  final IRemoveAllOrdersUsecase removeAllOrdersUsecase;
 
-  ConfigurationBloc(this.getAllQueuesUsecase, this.addNewQueueUsecase, this.removeQueueUsecase) : super(EmptyConfigurationState()) {
+  ConfigurationBloc(this.getAllQueuesUsecase, this.addNewQueueUsecase, this.removeQueueUsecase, this.removeAllOrdersUsecase) : super(EmptyConfigurationState()) {
 
     on<FetchQueuesConfigurationEvent>(
       _fetchQueues,
@@ -29,6 +31,11 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
     on<RemoveQueueConfigurationEvent>(
       _removeQueue,
       transformer: sequential()
+    );
+
+    on<RemoveAllOrdersConfigurationEvent>(
+      _removeAllOrders,
+      transformer: droppable()
     );
 
    
@@ -54,4 +61,11 @@ class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
   Future<void> _removeQueue(RemoveQueueConfigurationEvent event, Emitter<ConfigurationState> emit) async {
     removeQueueUsecase.call(event.queue);
   }
+
+  Future<void> _removeAllOrders(RemoveAllOrdersConfigurationEvent event, Emitter<ConfigurationState> emit) async {
+    removeAllOrdersUsecase.call();
+  }
+
+
+  
 }

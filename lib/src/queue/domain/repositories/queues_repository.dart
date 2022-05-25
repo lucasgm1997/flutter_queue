@@ -6,4 +6,6 @@ abstract class IQueueRepository {
   Future<void> addQueue(QueueEntity entity);
 
   Future<void> removeQueue(QueueEntity entity);
+
+  Future<void> removeAllOrders();
 }

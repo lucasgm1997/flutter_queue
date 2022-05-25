@@ -14,10 +14,11 @@ void main() {
       final usecase = IGetAllQueuesUsecaseMock();
       final addNewQueueUsecase = AddNewQueueUsecaseMock();
       final removeNewQueueUsecase = RemoveQueueUsecaseMock();
+      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
 
       when( () => usecase.call() ).thenAnswer( (_) => Stream.value([]));
 
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
     },
     act: (bloc) => bloc.add(FetchQueuesConfigurationEvent()),
     wait: const Duration(milliseconds: 500),
@@ -35,10 +36,12 @@ void main() {
       final usecase = IGetAllQueuesUsecaseMock();
       final addNewQueueUsecase = AddNewQueueUsecaseMock();
       final removeNewQueueUsecase = RemoveQueueUsecaseMock();
+      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
+
 
       when( () => addNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value([]));
 
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
     },
     act: (bloc) => bloc.add(AddNewQueueConfigurationEvent(entity)),
     wait: const Duration(milliseconds: 500),
@@ -53,10 +56,11 @@ void main() {
       final usecase = IGetAllQueuesUsecaseMock();
       final addNewQueueUsecase = AddNewQueueUsecaseMock();
       final removeNewQueueUsecase = RemoveQueueUsecaseMock();
+      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
 
       when( () => removeNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value([]));
 
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
     },
     act: (bloc) => bloc.add(RemoveQueueConfigurationEvent(entity)),
     wait: const Duration(milliseconds: 500),
@@ -70,10 +74,11 @@ void main() {
       final usecase = IGetAllQueuesUsecaseMock();
       final addNewQueueUsecase = AddNewQueueUsecaseMock();
       final removeNewQueueUsecase = RemoveQueueUsecaseMock();
+      final removeAllOrdersUsecase = RemoveAllOrdersUsecaseMock();
 
       when( () => usecase.call() ).thenAnswer( (_) => Stream.error(Exception('Fetch with errors')));
 
-      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase);
+      return ConfigurationBloc(usecase, addNewQueueUsecase, removeNewQueueUsecase, removeAllOrdersUsecase);
     },
     act: (bloc) => bloc.add(FetchQueuesConfigurationEvent()),
     expect: (){

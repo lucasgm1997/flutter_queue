@@ -33,4 +33,10 @@ class QueueRepositoryImp implements IQueueRepository {
     await _dataSource.removeQueue(entity.id);
   }
 
+  @override
+  Future<void> removeAllOrders( ) async{
+    
+    await _dataSource.removeAllOrders();
+  }
+
 }

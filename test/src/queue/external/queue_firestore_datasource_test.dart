@@ -47,4 +47,36 @@ void main() {
     expect(queries.docs.first.data().containsKey('id'), false);
 
   });
+
+  test('Deve remover todas as orders de todas as queues', ( ) async {
+    final firestore = FakeFirebaseFirestore();
+    final datasource = QueueFirestoreDataSource(firestore);
+
+    datasource.addQueue({
+      'id': 'any_id',
+      'title': 'any_title',
+      'priority': 2,
+      'abbreviation': 'abbr',
+      'orders': [],
+    });
+
+    datasource.addQueue({
+      'id': 'any_id_2',
+      'title': 'any_title_2',
+      'priority': 4,
+      'abbreviation': 'abbr_2',
+      'orders': [],
+    });
+
+    await datasource.removeAllOrders();
+
+    final collectionReference = firestore.collection('queue');
+    final queries = await collectionReference.get();
+
+    expect(queries.docs.first.data().containsKey('orders'), false);
+    expect(queries.docs.last.data().containsKey('orders'), false);
+
+  });
+
+
 }

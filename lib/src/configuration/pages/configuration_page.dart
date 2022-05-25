@@ -77,6 +77,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> with CompleteStat
 
   @override
   Widget build(BuildContext context) {
+
     final bloc = context.watch<ConfigurationBloc>();
     final state = bloc.state;
 
@@ -128,7 +129,9 @@ class _ConfigurationPageState extends State<ConfigurationPage> with CompleteStat
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.black,),
                     child: const Text('Reiniciar filas'),
-                    onPressed: () {},
+                    onPressed: () {
+                      bloc.add(RemoveAllOrdersConfigurationEvent());
+                    },
                 ),
               ],
             ),
