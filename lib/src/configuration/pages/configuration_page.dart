@@ -114,7 +114,6 @@ class _ConfigurationPageState extends State<ConfigurationPage> with CompleteStat
                         trailing:  IconButton(
                           onPressed: (){
                              context.read<ConfigurationBloc>().add(RemoveQueueConfigurationEvent(queue));
-                            print(queue.id);
                           },
                           color: Colors.red,
                           

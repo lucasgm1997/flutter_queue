@@ -38,5 +38,18 @@ class QueueRepositoryImp implements IQueueRepository {
     
     await _dataSource.removeAllOrders();
   }
+  
+  @override
+  Future<void> generateOrder(QueueEntity entity) {
+    
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<void> updateQueue(QueueEntity queueEntity) async {
+
+    final map = JsonToQueue.toMap(queueEntity);
+    return _dataSource.updateQueue(map);
+  }
 
 }

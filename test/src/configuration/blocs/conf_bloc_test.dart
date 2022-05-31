@@ -42,7 +42,7 @@ void main() {
    final entity = QueueEntityMock();
    blocTest<ConfigurationBloc, ConfigurationState>('Add new entity',
     build: () {
-      when( () => addNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value([]));
+      when( () => addNewQueueUsecase.call(entity) ).thenAnswer( (_) => Future.value());
       return blocConfiguration;
     },
     act: (bloc) => bloc.add(AddNewQueueConfigurationEvent(entity)),

@@ -21,11 +21,11 @@ class QueueFirestoreDataSource implements IQueueDataSource {
   }
 
   @override
-  Future<void> addQueue(Map<String, dynamic> queue) async {
+  Future<void> addQueue(Map<String, dynamic> queueMap) async {
     final collectionReference = firestore.collection('queue');
-    queue.remove('id');
+    queueMap.remove('id');
 
-    collectionReference.add(queue);
+    collectionReference.add(queueMap);
   }
   
   @override
@@ -45,5 +45,15 @@ class QueueFirestoreDataSource implements IQueueDataSource {
       map.remove('orders');
       await doc.reference.set(map);
     }
+  }
+  
+  @override
+  Future<void> updateQueue(Map<String, dynamic> queueEntity) async {
+
+    final collectionReference = firestore.collection('queue');
+
+    final doc = collectionReference.doc(queueEntity['id']);
+
+    doc.set(queueEntity);
   }
 }

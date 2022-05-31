@@ -78,5 +78,43 @@ void main() {
 
   });
 
+  test('Deve atualizar a queue', ( ) async {
+    final firestore = FakeFirebaseFirestore();
+    final datasource = QueueFirestoreDataSource(firestore);
+
+    datasource.addQueue({
+      'id': 'any_id',
+      'title': 'any_title',
+      'priority': 2,
+      'abbreviation': 'abbr',
+      'orders': [],
+    });
+
+    await datasource.updateQueue({
+      'id': 'any_id',
+      'title': 'any_title',
+      'priority': 2,
+      'abbreviation': 'abbr',
+      'orders': [
+        {
+          'position': 1,
+          'id': '0001',
+          'status': 'wainting' ,
+          'timestamp': DateTime.now(),
+        }
+      ],
+    });
+
+    final collectionReference = firestore.collection('queue');
+
+    final queue = await collectionReference.doc('any_id').get();
+    expect(queue.data()?.containsKey('orders'), true );
+    expect(queue.data()?['orders'][0]['status'], 'wainting' );
+
+
+    
+
+  });
+
 
 }

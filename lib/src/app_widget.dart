@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_queue/src/checkin/checkin_module.dart';
 import 'package:flutter_queue/src/configuration/configuration_module.dart';
 import 'package:flutter_queue/src/configuration/pages/configuration_page.dart';
+import 'package:flutter_queue/src/home/home_page.dart';
 import 'package:flutter_queue/src/queue/queue_module.dart';
 import 'package:provider/provider.dart';
 
@@ -13,11 +15,15 @@ class AppWidget extends StatelessWidget {
       providers: [
         ...queueModule,
         ...configurationModule,
+        ...checkinModule,
       ],
       child: MaterialApp(
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.dark,
-        home: const ConfigurationPage(),
+        routes: <String, WidgetBuilder>{
+          '/' : (_) => const HomePage(),
+          '/config' : (_) => const ConfigurationPage(),
+        },
       ),
     );
   }
