@@ -4,4 +4,5 @@ Este projeto tem como finalidade didática, afim de reforçar conhecimentos em f
 
 Tela de listagem.
 
-![Screenshot_1654107860](https://user-images.githubusercontent.com/25774838/171475881-ecb1f758-2693-4785-b548-51cc0ab2b195.png)
+![image](https://user-images.githubusercontent.com/25774838/171476018-7a5b06a1-f8a1-4e16-a902-28fba0de3037.png)
+
