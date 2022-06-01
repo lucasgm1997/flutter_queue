@@ -1,6 +1,6 @@
 # flutter_queue
 
-A new Flutter project.
+Este projeto tem como finalidade didática, afim de reforçar conhecimentos em firebase, clean architecure, bloc, provider, testes unitários e alguns design patterns como repository e copywith.
 
 ## Getting Started
 
