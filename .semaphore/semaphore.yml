@@ -45,8 +45,3 @@ blocks:
         - name: 'Test code '
           commands:
             - flutter test test
-after_pipeline:
-  task:
-    jobs:
-      - name: 'Job #1'
-        commands: []
