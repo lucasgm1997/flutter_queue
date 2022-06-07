@@ -4,11 +4,10 @@ import 'package:flutter_queue/src/queue/infra/adapters/json_to_queue.dart';
 import 'package:flutter_queue/src/queue/infra/datasource/queue_datasource.dart';
 
 class QueueRepositoryImp implements IQueueRepository {
-
   final IQueueDataSource _dataSource;
 
   QueueRepositoryImp(this._dataSource);
-  
+
   @override
   Stream<List<QueueEntity>> getAllQueues() {
     final stream = _dataSource.getAllQueues();
@@ -18,38 +17,32 @@ class QueueRepositoryImp implements IQueueRepository {
   List<QueueEntity> _convert(List<Map> list) {
     return list.map(JsonToQueue.fromMap).toList();
   }
-  
+
   @override
   Future<void> addQueue(QueueEntity queue) async {
     final map = JsonToQueue.toMap(queue);
-    
+
     await _dataSource.addQueue(map);
-    
   }
-  
+
   @override
-  Future<void> removeQueue(QueueEntity entity) async{
-    
+  Future<void> removeQueue(QueueEntity entity) async {
     await _dataSource.removeQueue(entity.id);
   }
 
   @override
-  Future<void> removeAllOrders( ) async{
-    
+  Future<void> removeAllOrders() async {
     await _dataSource.removeAllOrders();
   }
-  
+
   @override
   Future<void> generateOrder(QueueEntity entity) {
-    
     throw UnimplementedError();
   }
-  
+
   @override
   Future<void> updateQueue(QueueEntity queueEntity) async {
-
     final map = JsonToQueue.toMap(queueEntity);
     return _dataSource.updateQueue(map);
   }
-
 }

@@ -11,5 +11,4 @@ class RemoveQueueUsecaseImp implements IRemoveQueueUsecase {
   Future<void> call(QueueEntity entity) async {
     return repository.removeQueue(entity);
   }
-
 }

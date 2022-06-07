@@ -6,15 +6,15 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../mocks/mocks.dart';
 
-
 void main() {
-  test('Deve receber uma Stream de Map e converter para uma Stream de QueueEntity ', () {
+  test(
+      'Deve receber uma Stream de Map e converter para uma Stream de QueueEntity ',
+      () {
     final datasource = IQueueDataSourceyMock();
-    
+
     //stub
     when(() => datasource.getAllQueues())
-        .thenAnswer(
-          (invocation) => Stream.value([
+        .thenAnswer((invocation) => Stream.value([
               {
                 'id': 'any_id',
                 'title': 'any_title',
@@ -29,26 +29,33 @@ void main() {
                   },
                 ],
               }
-            ])
-          );
+            ]));
 
     final repository = QueueRepositoryImp(datasource);
     final result = repository.getAllQueues();
 
-    expect(result, emits( isA<List<QueueEntity>>()  ));
+    expect(result, emits(isA<List<QueueEntity>>()));
   });
 
   test('Deve adicionar uma nova queue', () {
     final datasource = IQueueDataSourceyMock();
-    final orderEntity = Order(position: 1, id: 'any_id', timestamp: DateTime.now(), status: EOrderStatus.wainting);
-    final queue = QueueEntity(id: 'any_id', title: 'queue_entity_title', abbreviation: 'abbr', priority: 4, orders: [orderEntity]);
+    final orderEntity = Order(
+        position: 1,
+        id: 'any_id',
+        timestamp: DateTime.now(),
+        status: EOrderStatus.wainting);
+    final queue = QueueEntity(
+        id: 'any_id',
+        title: 'queue_entity_title',
+        abbreviation: 'abbr',
+        priority: 4,
+        orders: [orderEntity]);
 
-    when(() => datasource.addQueue(any())).thenAnswer((invocation) => Future.value( ));
+    when(() => datasource.addQueue(any()))
+        .thenAnswer((invocation) => Future.value());
 
     final repository = QueueRepositoryImp(datasource);
 
     expect(repository.addQueue(queue), completes);
-
   });
-  
 }

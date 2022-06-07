@@ -5,14 +5,16 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../mocks/mocks.dart';
 
 void main() {
-  test('Deve adicionar uma nova queueEntity', ()  {
+  test('Deve adicionar uma nova queueEntity', () {
     final repositoryMock = GetAllQueuesRepositorysMock();
     final queue = QueueEntityMock();
 
-    when(() => repositoryMock.addQueue(queue),).thenAnswer((invocation) => Future.value());
-    
+    when(
+      () => repositoryMock.addQueue(queue),
+    ).thenAnswer((invocation) => Future.value());
+
     final addQueueUsecase = AddNewQueueUsecaseImp(repositoryMock);
 
-    expect(addQueueUsecase.call(queue), completes );
+    expect(addQueueUsecase.call(queue), completes);
   });
 }

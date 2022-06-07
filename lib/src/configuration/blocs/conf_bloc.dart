@@ -10,62 +10,49 @@ import 'package:flutter_queue/src/queue/domain/usecases/remove_all_orders/remove
 import 'package:flutter_queue/src/queue/domain/usecases/remove_queue_use_case/remove_queue_use_case_imp.dart';
 
 class ConfigurationBloc extends Bloc<ConfigurationEvent, ConfigurationState> {
-
   final IGetAllQueuesUsecase getAllQueuesUsecase;
   final IAddNewQueueUsecase addNewQueueUsecase;
   final IRemoveQueueUsecase removeQueueUsecase;
   final IRemoveAllOrdersUsecase removeAllOrdersUsecase;
 
-  ConfigurationBloc(this.getAllQueuesUsecase, this.addNewQueueUsecase, this.removeQueueUsecase, this.removeAllOrdersUsecase) : super(EmptyConfigurationState()) {
-
+  ConfigurationBloc(this.getAllQueuesUsecase, this.addNewQueueUsecase,
+      this.removeQueueUsecase, this.removeAllOrdersUsecase)
+      : super(EmptyConfigurationState()) {
     on<FetchQueuesConfigurationEvent>(
       _fetchQueues,
       transformer: restartable(),
     );
 
-    on<AddNewQueueConfigurationEvent>(
-      _addhQueues,
-      transformer: sequential()
-    );
+    on<AddNewQueueConfigurationEvent>(_addhQueues, transformer: sequential());
 
-    on<RemoveQueueConfigurationEvent>(
-      _removeQueue,
-      transformer: sequential()
-    );
+    on<RemoveQueueConfigurationEvent>(_removeQueue, transformer: sequential());
 
-    on<RemoveAllOrdersConfigurationEvent>(
-      _removeAllOrders,
-      transformer: droppable()
-    );
-
-   
+    on<RemoveAllOrdersConfigurationEvent>(_removeAllOrders,
+        transformer: droppable());
   }
 
-  Future<void> _fetchQueues( FetchQueuesConfigurationEvent event, Emitter<ConfigurationState> emit) async {
+  Future<void> _fetchQueues(FetchQueuesConfigurationEvent event,
+      Emitter<ConfigurationState> emit) async {
     emit(LoadingConfigurationState());
-    await emit.onEach<List<QueueEntity>>(
-      getAllQueuesUsecase.call(),
-      onData: (queues){
-          emit(LoadedConfigurationState(queues));
-      },
-      onError: (error, StackTrace stack) {
-        emit(ExcpetionConfigurationState(error.toString()));
-      }
-    );
+    await emit.onEach<List<QueueEntity>>(getAllQueuesUsecase.call(),
+        onData: (queues) {
+      emit(LoadedConfigurationState(queues));
+    }, onError: (error, StackTrace stack) {
+      emit(ExcpetionConfigurationState(error.toString()));
+    });
   }
 
-  Future<void> _addhQueues( AddNewQueueConfigurationEvent event, emit) async {
+  Future<void> _addhQueues(AddNewQueueConfigurationEvent event, emit) async {
     addNewQueueUsecase.call(event.queueEntity);
   }
 
-  Future<void> _removeQueue(RemoveQueueConfigurationEvent event, Emitter<ConfigurationState> emit) async {
+  Future<void> _removeQueue(RemoveQueueConfigurationEvent event,
+      Emitter<ConfigurationState> emit) async {
     removeQueueUsecase.call(event.queue);
   }
 
-  Future<void> _removeAllOrders(RemoveAllOrdersConfigurationEvent event, Emitter<ConfigurationState> emit) async {
+  Future<void> _removeAllOrders(RemoveAllOrdersConfigurationEvent event,
+      Emitter<ConfigurationState> emit) async {
     removeAllOrdersUsecase.call();
   }
-
-
-  
 }

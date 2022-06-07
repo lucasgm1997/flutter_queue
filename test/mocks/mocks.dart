@@ -7,11 +7,17 @@ import 'package:flutter_queue/src/queue/domain/usecases/remove_queue_use_case/re
 import 'package:flutter_queue/src/queue/infra/datasource/queue_datasource.dart';
 import 'package:mocktail/mocktail.dart';
 
-class GetAllQueuesRepositorysMock extends Mock implements IQueueRepository{}
-class QueueEntityMock extends Mock implements QueueEntity{}
+class GetAllQueuesRepositorysMock extends Mock implements IQueueRepository {}
 
-class IQueueDataSourceyMock extends Mock implements IQueueDataSource{}
-class IGetAllQueuesUsecaseMock extends Mock implements IGetAllQueuesUsecase{}
-class AddNewQueueUsecaseMock extends Mock implements IAddNewQueueUsecase{}
-class RemoveQueueUsecaseMock extends Mock implements IRemoveQueueUsecase{}
-class RemoveAllOrdersUsecaseMock extends Mock implements IRemoveAllOrdersUsecase{}
+class QueueEntityMock extends Mock implements QueueEntity {}
+
+class IQueueDataSourceyMock extends Mock implements IQueueDataSource {}
+
+class IGetAllQueuesUsecaseMock extends Mock implements IGetAllQueuesUsecase {}
+
+class AddNewQueueUsecaseMock extends Mock implements IAddNewQueueUsecase {}
+
+class RemoveQueueUsecaseMock extends Mock implements IRemoveQueueUsecase {}
+
+class RemoveAllOrdersUsecaseMock extends Mock
+    implements IRemoveAllOrdersUsecase {}

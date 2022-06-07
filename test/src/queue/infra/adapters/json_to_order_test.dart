@@ -3,8 +3,7 @@ import 'package:flutter_queue/src/queue/infra/adapters/json_to_order.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('Deve converter um map em um objeto do tipo Order', ()  {
-
+  test('Deve converter um map em um objeto do tipo Order', () {
     final order = JsonToOrder.fromMap({
       'id': 'any_id',
       'position': 1,
@@ -15,8 +14,7 @@ void main() {
     expect(order, isA<Order>());
   });
 
-  test('Deve que order.status seja igual EOrderStatus.attending', ()  {
-
+  test('Deve que order.status seja igual EOrderStatus.attending', () {
     final order = JsonToOrder.fromMap({
       'id': 'any_id',
       'position': 1,
@@ -27,8 +25,7 @@ void main() {
     expect(order.status, EOrderStatus.attending);
   });
 
-  test('Deve converter OrderEntity para um Map', ()  {
-
+  test('Deve converter OrderEntity para um Map', () {
     final orderEntity = JsonToOrder.fromMap({
       'id': 'any_id',
       'position': 1,

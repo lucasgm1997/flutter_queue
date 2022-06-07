@@ -15,11 +15,27 @@ import 'package:provider/provider.dart';
 
 final queueModule = [
   Provider<FirebaseFirestore>.value(value: FirebaseFirestore.instance),
-  Provider<IQueueDataSource>(create: ((context) => QueueFirestoreDataSource(context.read())),),
-  Provider<IQueueRepository>(create: ((context) => QueueRepositoryImp(context.read())),),
+  Provider<IQueueDataSource>(
+    create: ((context) => QueueFirestoreDataSource(context.read())),
+  ),
+  Provider<IQueueRepository>(
+    create: ((context) => QueueRepositoryImp(context.read())),
+  ),
   //usecases
-  Provider<IGetAllQueuesUsecase>(create: ((context) => GetAllQueuesUsecaseImp(context.read<IQueueRepository>())),),
-  Provider<IAddNewQueueUsecase>(create: ((context) => AddNewQueueUsecaseImp(context.read<IQueueRepository>())),),
-  Provider<IRemoveQueueUsecase>(create: ((context) => RemoveQueueUsecaseImp(context.read<IQueueRepository>())),),
-  Provider<IRemoveAllOrdersUsecase>(create: ((context) => RemoveAllOrdersUsecaseImp(context.read<IQueueRepository>())),),
- ];
+  Provider<IGetAllQueuesUsecase>(
+    create: ((context) =>
+        GetAllQueuesUsecaseImp(context.read<IQueueRepository>())),
+  ),
+  Provider<IAddNewQueueUsecase>(
+    create: ((context) =>
+        AddNewQueueUsecaseImp(context.read<IQueueRepository>())),
+  ),
+  Provider<IRemoveQueueUsecase>(
+    create: ((context) =>
+        RemoveQueueUsecaseImp(context.read<IQueueRepository>())),
+  ),
+  Provider<IRemoveAllOrdersUsecase>(
+    create: ((context) =>
+        RemoveAllOrdersUsecaseImp(context.read<IQueueRepository>())),
+  ),
+];

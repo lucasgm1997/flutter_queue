@@ -15,4 +15,3 @@ class PrintOrderCheckinEvent implements CheckinEvent {
   final Order order;
   PrintOrderCheckinEvent(this.order);
 }
-

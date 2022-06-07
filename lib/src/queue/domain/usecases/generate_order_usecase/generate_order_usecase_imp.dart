@@ -3,15 +3,19 @@ import 'package:flutter_queue/src/queue/domain/usecases/generate_order_usecase/g
 import 'package:flutter_queue/src/queue/domain/value_objects/order.dart';
 
 class GenerateOrderUsecaseImp implements IGenerateOrderUsecase {
-  
   // IQueueRepository queueRepository;
   // GenerateOrderUsecaseImp(this.queueRepository);
 
   @override
-  QueueEntity call(QueueEntity queueEntity)  {
+  QueueEntity call(QueueEntity queueEntity) {
     final totalOrders = queueEntity.orders.length;
-    
-    final order = Order(id: _generatePadLeft(totalOrders+1), position: totalOrders+1, status: EOrderStatus.wainting, timestamp: DateTime.now(), );
+
+    final order = Order(
+      id: _generatePadLeft(totalOrders + 1),
+      position: totalOrders + 1,
+      status: EOrderStatus.wainting,
+      timestamp: DateTime.now(),
+    );
 
     final orders = List<Order>.from(queueEntity.orders);
 
@@ -27,6 +31,5 @@ class GenerateOrderUsecaseImp implements IGenerateOrderUsecase {
     );
   }
 
-  String _generatePadLeft(int id) =>  '$id'.padLeft(4, '0');
-
-} 
+  String _generatePadLeft(int id) => '$id'.padLeft(4, '0');
+}

@@ -1,12 +1,10 @@
 import 'package:flutter_queue/src/queue/domain/entities/queue_entity.dart';
 
-abstract class ConfigurationState{
+abstract class ConfigurationState {}
 
-}
+class EmptyConfigurationState implements ConfigurationState {}
 
-class EmptyConfigurationState implements ConfigurationState{}
-
-class LoadingConfigurationState implements ConfigurationState{}
+class LoadingConfigurationState implements ConfigurationState {}
 
 class LoadedConfigurationState implements ConfigurationState {
   final List<QueueEntity> queues;
@@ -14,7 +12,7 @@ class LoadedConfigurationState implements ConfigurationState {
   LoadedConfigurationState(this.queues);
 }
 
-class ExcpetionConfigurationState implements ConfigurationState{
+class ExcpetionConfigurationState implements ConfigurationState {
   final String message;
 
   ExcpetionConfigurationState(this.message);

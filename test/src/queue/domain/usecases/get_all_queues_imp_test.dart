@@ -5,16 +5,17 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../../../mocks/mocks.dart';
 
-
 void main() {
-  test('Deve retornar uma lista de QueueEntity', ()  {
+  test('Deve retornar uma lista de QueueEntity', () {
     final repositoryMock = GetAllQueuesRepositorysMock();
     final entity = QueueEntityMock();
 
-    when(()=>repositoryMock.getAllQueues(),).thenAnswer((invocation) => Stream.value([entity]));
-    
+    when(
+      () => repositoryMock.getAllQueues(),
+    ).thenAnswer((invocation) => Stream.value([entity]));
+
     final usecase = GetAllQueuesUsecaseImp(repositoryMock);
-    
+
     final result = usecase.call();
 
     expect(result, emits(isA<List<QueueEntity>>()));

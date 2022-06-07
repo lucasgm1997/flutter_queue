@@ -9,5 +9,4 @@ class RemoveAllOrdersUsecaseImp implements IRemoveAllOrdersUsecase {
   Future<void> call() {
     return queueRepository.removeAllOrders();
   }
-
 }

@@ -21,8 +21,8 @@ class AppWidget extends StatelessWidget {
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.dark,
         routes: <String, WidgetBuilder>{
-          '/' : (_) => const HomePage(),
-          '/config' : (_) => const ConfigurationPage(),
+          '/': (_) => const HomePage(),
+          '/config': (_) => const ConfigurationPage(),
         },
       ),
     );

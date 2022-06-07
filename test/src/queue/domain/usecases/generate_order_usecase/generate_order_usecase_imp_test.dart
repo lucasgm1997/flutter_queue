@@ -4,17 +4,19 @@ import 'package:flutter_queue/src/queue/domain/usecases/generate_order_usecase/g
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  
-  test('Deve gerar uma nova order', ()  {
+  test('Deve gerar uma nova order', () {
     final generateOrderUsecase = GenerateOrderUsecaseImp();
-    final queueEntity = QueueEntity(id: 'asd', title: 'generate_order', abbreviation: 'g_o', priority: 1, orders: []);
-    
+    final queueEntity = QueueEntity(
+        id: 'asd',
+        title: 'generate_order',
+        abbreviation: 'g_o',
+        priority: 1,
+        orders: []);
 
     final result = generateOrderUsecase.call(queueEntity);
 
     expect(result.orders.length, 1);
     expect(result.orders.first.id, '0001');
     expect(result.orders.first.position, 1);
-
   });
 }

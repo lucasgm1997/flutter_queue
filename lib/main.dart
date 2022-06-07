@@ -5,8 +5,6 @@ import 'package:flutter_queue/src/app_widget.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) {
-    
     runApp(const AppWidget());
   });
 }
-

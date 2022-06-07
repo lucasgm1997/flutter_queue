@@ -5,10 +5,10 @@ import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase/g
 import 'package:flutter_queue/src/queue/domain/usecases/update_queue_usecase/update_queue_usecase.dart';
 
 final checkinModule = [
-  BlocProvider(create: (context) => CheckinBloc(
-    context.read<IGetAllQueuesUsecase>(),
-    context.read<IGenerateOrderUsecase>(),
-    context.read<IUpdateQueueUsecase>(),
-    
-    )),
+  BlocProvider(
+      create: (context) => CheckinBloc(
+            context.read<IGetAllQueuesUsecase>(),
+            context.read<IGenerateOrderUsecase>(),
+            context.read<IUpdateQueueUsecase>(),
+          )),
 ];

@@ -18,17 +18,33 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(15),
         child: ListView(
           children: [
-            ElevatedButton(onPressed: ( ){},child: const Text('Entrada'),),
-            const SizedBox(height: 10,),
-            ElevatedButton(onPressed: ( ){},child: const Text('Salão'),),
-            const SizedBox(height: 10,),
-
-            ElevatedButton(onPressed: ( ){},child: const Text('Guichê'),),
-            const SizedBox(height: 10,),
-
-            ElevatedButton(onPressed: ( ){
-              Navigator.pushNamed(context, '/config');
-            },child: const Text('Configurações'),)
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Entrada'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Salão'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Guichê'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/config');
+              },
+              child: const Text('Configurações'),
+            )
           ],
         ),
       ),

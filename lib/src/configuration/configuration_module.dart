@@ -6,10 +6,11 @@ import 'package:flutter_queue/src/queue/domain/usecases/remove_all_orders/remove
 import 'package:flutter_queue/src/queue/domain/usecases/remove_queue_use_case/remove_queue_use_case_imp.dart';
 
 final configurationModule = [
-  BlocProvider(create: (context) => ConfigurationBloc(
-    context.read<IGetAllQueuesUsecase>(),
-    context.read<IAddNewQueueUsecase>(),
-    context.read<IRemoveQueueUsecase>(),
-    context.read<IRemoveAllOrdersUsecase>(),
-    )),
+  BlocProvider(
+      create: (context) => ConfigurationBloc(
+            context.read<IGetAllQueuesUsecase>(),
+            context.read<IAddNewQueueUsecase>(),
+            context.read<IRemoveQueueUsecase>(),
+            context.read<IRemoveAllOrdersUsecase>(),
+          )),
 ];

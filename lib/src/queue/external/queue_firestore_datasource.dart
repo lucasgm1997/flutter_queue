@@ -9,7 +9,8 @@ class QueueFirestoreDataSource implements IQueueDataSource {
   @override
   Stream<List<Map>> getAllQueues() {
     final collectionReference = firestore.collection('queue');
-    final snapshotQueue = collectionReference.orderBy('priority', descending: true).snapshots();
+    final snapshotQueue =
+        collectionReference.orderBy('priority', descending: true).snapshots();
 
     return snapshotQueue.map((event) => event.docs).map(_convert);
   }
@@ -27,29 +28,28 @@ class QueueFirestoreDataSource implements IQueueDataSource {
 
     collectionReference.add(queueMap);
   }
-  
+
   @override
   Future<void> removeQueue(String id) async {
     final collectionReference = firestore.collection('queue');
 
-      await collectionReference.doc(id).delete();
-    }
-    
+    await collectionReference.doc(id).delete();
+  }
+
   @override
   Future<void> removeAllOrders() async {
     final collectionReference = firestore.collection('queue');
     final snapshot = await collectionReference.get();
 
-    for (var doc in snapshot.docs){
+    for (var doc in snapshot.docs) {
       final map = doc.data();
       map.remove('orders');
       await doc.reference.set(map);
     }
   }
-  
+
   @override
   Future<void> updateQueue(Map<String, dynamic> queueEntity) async {
-
     final collectionReference = firestore.collection('queue');
 
     final doc = collectionReference.doc(queueEntity['id']);

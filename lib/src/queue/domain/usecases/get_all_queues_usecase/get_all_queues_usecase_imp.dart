@@ -3,15 +3,12 @@ import 'package:flutter_queue/src/queue/domain/repositories/queues_repository.da
 import 'package:flutter_queue/src/queue/domain/usecases/get_all_queues_usecase/get_all_queues_usecase.dart';
 
 class GetAllQueuesUsecaseImp implements IGetAllQueuesUsecase {
-
   final IQueueRepository _repository;
 
   GetAllQueuesUsecaseImp(this._repository);
-
 
   @override
   Stream<List<QueueEntity>> call() {
     return _repository.getAllQueues();
   }
-
 }

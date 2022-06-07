@@ -3,14 +3,11 @@ import 'package:flutter_queue/src/queue/domain/repositories/queues_repository.da
 import 'package:flutter_queue/src/queue/domain/usecases/update_queue_usecase/update_queue_usecase.dart';
 
 class UpdateQueueUsecaseImp implements IUpdateQueueUsecase {
-
   IQueueRepository queueRepository;
   UpdateQueueUsecaseImp(this.queueRepository);
 
   @override
   Future<void> call(QueueEntity queueEntity) async {
-    
     queueRepository.updateQueue(queueEntity);
   }
-
 }

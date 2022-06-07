@@ -7,6 +7,10 @@ class QueueEntity {
   final int priority;
   final List<Order> orders;
 
-  QueueEntity({required this.id, required this.title,required this.abbreviation,required this.priority, required this.orders});
+  QueueEntity(
+      {required this.id,
+      required this.title,
+      required this.abbreviation,
+      required this.priority,
+      required this.orders});
 }
-
