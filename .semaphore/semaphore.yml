@@ -36,7 +36,6 @@ blocks:
   - name: Test
     dependencies:
       - Lint
-      - Setup
     task:
       prologue:
         commands:
