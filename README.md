@@ -9,3 +9,5 @@ Tela de listagem.
 CI/CD com fastlane e semaphore
 ![image](https://user-images.githubusercontent.com/25774838/172481862-1da37b27-178c-4225-9f29-ae097c7e4419.png)
 
+Firebase app distribution.
+![image](https://user-images.githubusercontent.com/25774838/172482048-7accfa55-878b-4976-8164-64392dad5522.png)
