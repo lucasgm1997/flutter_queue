@@ -21,8 +21,9 @@ Nova fila.
 
 ![image](https://user-images.githubusercontent.com/25774838/172483388-90e1fdcb-5b96-4c55-9c45-22ecb16b794b.png)
 
-CI/CD com fastlane e semaphore
-![image](https://user-images.githubusercontent.com/25774838/172481862-1da37b27-178c-4225-9f29-ae097c7e4419.png)
+CI/CD com fastlane e semaphore, onde uma vez feita uma nova feature ou corrigido algum bug é realizado
+os processos da mostrado na imagem ![image3] abaixo.
+![image3](https://user-images.githubusercontent.com/25774838/172481862-1da37b27-178c-4225-9f29-ae097c7e4419.png)
 
 Firebase app distribution.
 ![image](https://user-images.githubusercontent.com/25774838/172482048-7accfa55-878b-4976-8164-64392dad5522.png)
