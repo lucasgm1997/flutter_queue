@@ -30,9 +30,6 @@ blocks:
         - name: Format code
           commands:
             - flutter format --set-exit-if-changed .
-        - name: Analyze code
-          commands:
-            - flutter analyze .
   - name: Test
     dependencies:
       - Lint
