@@ -3,15 +3,15 @@
 Este projeto tem como finalidade didática, afim de reforçar conhecimentos em firebase, clean architecure, bloc, provider, testes unitários e alguns design patterns como repository e copywith.
 
 
-Home page (somente Configurações feito)
-.
+Home page (somente Configurações feito).
+
 
 ![image](https://user-images.githubusercontent.com/25774838/172482229-e1dffe04-6da9-4366-a20d-478a60211b49.png)
 
 
 Tela de listagem dos tipos de filas.
-.
-.
+
+
 
 ![image](https://user-images.githubusercontent.com/25774838/172483185-bbc5e177-e7d6-41af-b671-6239639bc407.png)
 
