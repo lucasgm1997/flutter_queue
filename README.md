@@ -9,7 +9,8 @@ Home page (somente Configurações feito)
 ![image](https://user-images.githubusercontent.com/25774838/172482229-e1dffe04-6da9-4366-a20d-478a60211b49.png)
 
 
-Tela de listagem
+Tela de listagem dos tipos de filas.
+.
 .
 ![image](https://user-images.githubusercontent.com/25774838/171476018-7a5b06a1-f8a1-4e16-a902-28fba0de3037.png)
 
