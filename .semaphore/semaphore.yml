@@ -42,3 +42,8 @@ blocks:
         - name: 'Test code '
           commands:
             - flutter test test
+promotions:
+  - name: Build APP
+    pipeline_file: pipeline_2.yml
+  - name: Deploy to firebase
+    pipeline_file: pipeline_3.yml

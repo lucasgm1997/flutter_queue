@@ -1,0 +1,25 @@
+version: v1.0
+name: 'Continuous Deployment: Firebase'
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+  containers:
+    - name: main
+      image: 'semaphoreci/android:30-flutter'
+global_job_config:
+  prologue:
+    commands:
+      - checkout
+      - 'cache restore flutter-packages-$SEMAPHORE_GIT_BRANCH-$(checksum pubspec.yaml),flutter-packages-$(checksum pubspec.yaml),flutter-packages'
+      - cd android
+      - bundle install
+      - cache store
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - flutter build apk --release
+            - bundle exec fastlane deploy
